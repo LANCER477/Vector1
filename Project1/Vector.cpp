@@ -163,6 +163,8 @@ Vector& Vector::operator-=(int a)
 	return *this;
 }
 
+
+
 Vector& Vector::operator*=(int a) 
 {
 	for (int i = 0; i < size; i++)
@@ -171,6 +173,32 @@ Vector& Vector::operator*=(int a)
 	}
 
 	return *this;
+}
+
+ostream& operator<<(ostream& os, const Vector& obj) {
+	for (int i = 0; i < obj.size; i++) {
+		os << obj.arr[i] << "\t";
+	}
+	os << "\n---------------------------------------------------\n";
+	return os;
+}
+
+istream& operator>>(istream& is, Vector& obj) {
+	cout << "Size vector: ";
+	is >> obj.size;
+
+	if (obj.arr != nullptr) {
+		delete[] obj.arr;
+	}
+
+	obj.arr = new int[obj.size];
+
+	cout << "Elements vector: ";
+	for (int i = 0; i < obj.size; i++) {
+		is >> obj.arr[i];
+	}
+
+	return is;
 }
 
 
